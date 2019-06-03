@@ -1,0 +1,29 @@
+{
+  "name": "infracamp/rudl-principal",
+  "type": "project",
+  "homepage": "https://infracamp.org",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Matthias Leuffen",
+      "email": "m@tth.es"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "Rudl\\": "src/"
+    },
+    "files": [
+      "config.php"
+    ]
+  },
+  "require": {
+    "php" : ">7.2",
+    "phore/micro-app": "dev-master",
+    "phore/filesystem": "dev-master",
+    "phore/system": "dev-master",
+    "phore/cloudtool": "dev-master",
+    "phore/http-client": "dev-master"
+  },
+  "minimum-stability": "dev"
+}

@@ -1,0 +1,19 @@
+admin_users:
+  - user: matthes
+    pass_hash: $20idj$lskdjflsakfjh2kl2
+
+deploy_keys:
+  - descr: Description appearing in the logs
+    pass_hash: $20$02jdlskhh4lkwj
+
+registry_auth:
+  registry.gitlab.com:
+    user: someUser
+    enc_pass: encrypted password
+
+
+
+
+auto_secrets:
+  - "_rudl_cf_key"
+  -

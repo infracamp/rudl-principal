@@ -1,0 +1,5 @@
+domains:
+  - "rudl1.infracamp.org"
+locations:
+  - location: /
+    proxy_pass: http://rudl-principal/

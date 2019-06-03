@@ -1,0 +1,6 @@
+domains:
+  - "some.domain.de"
+locations:
+  - location: /
+    proxy_pass: http://service1
+ssl_pem_file_enc: service1.pem

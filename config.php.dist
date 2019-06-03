@@ -1,0 +1,20 @@
+<?php
+/**
+ * This file is copied to config.php by kick
+ *
+ * Placeholders (\%CONF_ENVNAME\%) are replaced by the values found in environment
+ */
+
+define ("DEV_MODE", (bool)"%DEV_MODE%");
+
+
+if (DEV_MODE === true) {
+    define ("CONF_CLUSTER_NAME", "rudl1");
+} else {
+    define ("CONF_CLUSTER_NAME", "%CONF_CLUSTER_NAME%");
+}
+
+define ("CONF_REPO_DIR", "/mnt/repo");
+define ("CONF_SSL_CERT_STORE", "/mnt/ssl");
+define("CONF_MANAGER_CERT_SECRET", "/run/secrets/rudl_cf_secret");
+define("CONF_CLUSTER_DOMAIN", "%CONF_CLUSTER_DOMAIN%");

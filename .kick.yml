@@ -1,0 +1,19 @@
+
+version: 1
+from: "infracamp/kickstart-flavor-gaia:testing"
+
+apache_fallback_resource: "/index.php"
+http_port: 80
+
+
+config_file:
+  template: "config.php.dist"
+  target: "config.php"
+
+
+command:
+  build:
+    - "echo \"www-data   ALL = (ALL) NOPASSWD: /usr/bin/docker\" | sudo tee --append /etc/sudoers"
+    - sudo scripts/install.sh
+    - "composer update"
+    #- "sudo chmod 777 /srv"
