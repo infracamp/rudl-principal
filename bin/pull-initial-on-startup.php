@@ -8,12 +8,16 @@
 
 namespace App;
 
+use Phore\Core\Exception\InvalidDataException;
+
 require __DIR__ . "/../vendor/autoload.php";
 
 
 while (true) {
     try {
-        phore_http_request("http://localhost/v1/hooks/repo")->send()->getBodyJson();
+        $ret = phore_http_request("http://localhost/v1/hooks/repo")->send()->getBodyJson();
+        if (phore_pluck("success", $ret, false) === false)
+            throw new InvalidDataException("Empty result.");
         phore_out("Pull of repository successful. Starting normal operations.");
         break;
     } catch (\Exception $e) {
