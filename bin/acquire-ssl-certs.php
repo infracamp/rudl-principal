@@ -17,7 +17,7 @@ require __DIR__ . "/../vendor/autoload.php";
 
 
 
-$certStore = new PhoreSecureCertStore(phore_file(CONF_PRINCIPAL_SECRET));
+$certStore = new PhoreSecureCertStore(phore_file(CONF_PRINCIPAL_SECRET)->get_contents());
 $letsencrypt = new PhoreLetsencrypt("m@tth.es");
 
 
