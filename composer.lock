@@ -499,12 +499,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/phore/phore-vcs.git",
-                "reference": "8157839fc36de1ef2190115bad7534bc9ec07981"
+                "reference": "72cc75c54b6f5d10f62cc65f6624e90390040eba"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phore/phore-vcs/zipball/8157839fc36de1ef2190115bad7534bc9ec07981",
-                "reference": "8157839fc36de1ef2190115bad7534bc9ec07981",
+                "url": "https://api.github.com/repos/phore/phore-vcs/zipball/72cc75c54b6f5d10f62cc65f6624e90390040eba",
+                "reference": "72cc75c54b6f5d10f62cc65f6624e90390040eba",
                 "shasum": ""
             },
             "require": {
@@ -536,7 +536,7 @@
                 }
             ],
             "description": "Wrapper for git",
-            "time": "2019-06-04T10:39:47+00:00"
+            "time": "2019-06-04T16:53:24+00:00"
         },
         {
             "name": "psr/container",

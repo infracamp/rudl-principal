@@ -24,4 +24,4 @@ command:
     - sudo /opt/scripts/startup.sh
 
   interval:
-    - sudo php -f /opt/bin/acquire-ssl-certs.php
+    - sudo php -f /opt/bin/acquire-ssl-certs.php || sleep 60

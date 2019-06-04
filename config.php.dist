@@ -5,8 +5,8 @@
  * Placeholders (\%CONF_ENVNAME\%) are replaced by the values found in environment
  */
 
-//define ("DEV_MODE", false);
-define ("DEV_MODE", (bool)"%DEV_MODE%");
+define ("DEV_MODE", false);
+//define ("DEV_MODE", (bool)"%DEV_MODE%");
 
 
 if (DEV_MODE === true) {
