@@ -9,6 +9,7 @@
 namespace App;
 
 use Phore\Core\Helper\PhoreSecretBoxSync;
+use Phore\Letsencrypt\PhoreLetsencryptModule;
 use Phore\Letsencrypt\PhoreSecureCertStore;
 use Phore\MicroApp\App;
 use Phore\MicroApp\Handler\JsonExceptionHandler;
@@ -46,6 +47,7 @@ $app->define("cloudfront", function(PhoreSecureCertStore $certStore) : Cloudfron
     return new Cloudfront($certStore);
 });
 
+$app->addModule(new PhoreLetsencryptModule());
 
 $app->addCtrl(RepoPushHookCtrl::class);
 $app->addCtrl(CloudfrontCtrl::class);
