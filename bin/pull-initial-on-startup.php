@@ -12,7 +12,6 @@ use Phore\Core\Exception\InvalidDataException;
 
 require __DIR__ . "/../vendor/autoload.php";
 
-
 while (true) {
     try {
         $ret = phore_http_request("http://localhost/v1/hooks/repo")->send()->getBodyJson();
