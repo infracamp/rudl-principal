@@ -47,11 +47,18 @@ $app->define("cloudfront", function(PhoreSecureCertStore $certStore) : Cloudfron
     return new Cloudfront($certStore);
 });
 
+
+
+
 $app->addModule(new PhoreLetsencryptModule());
 
 $app->addCtrl(RepoPushHookCtrl::class);
 $app->addCtrl(CloudfrontCtrl::class);
 $app->addCtrl(CloudfrontCertCtrl::class);
+
+$app->router->onGet("/", function () {
+    return ["success" => true, "msg" => "rudl-principal ready", "host" => gethostname()];
+});
 
 
 $app->serve();
