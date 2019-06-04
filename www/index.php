@@ -9,9 +9,16 @@
 namespace App;
 
 use Phore\Core\Helper\PhoreSecretBoxSync;
+use Phore\Letsencrypt\PhoreSecureCertStore;
 use Phore\MicroApp\App;
 use Phore\MicroApp\Handler\JsonExceptionHandler;
 use Phore\MicroApp\Handler\JsonResponseHandler;
+use Phore\VCS\VcsFactory;
+use Phore\VCS\VcsRepository;
+use Rudl\Cloudfront;
+use Rudl\Ctrl\CloudfrontCertCtrl;
+use Rudl\Ctrl\CloudfrontCtrl;
+use Rudl\Ctrl\RepoPushHookCtrl;
 
 require __DIR__ . "/../vendor/autoload.php";
 
@@ -22,17 +29,27 @@ $app->setOnExceptionHandler(new JsonExceptionHandler());
 $app->acl->addRule(aclRule("*")->ALLOW());
 
 
-$app->router->onGet("/v1/cloudfront/config", function () {
+$app->define("repo", function () : VcsRepository {
+    $repo = new VcsFactory();
+    $repo->setAuthSshPrivateKey(phore_file("/mnt/.ssh/id_ed25519")->get_contents());
 
-
-    return phore_file(__DIR__ . "/cloudfront.json")->get_json();
+    return $repo->repository("/mnt/repo", CONF_REPO_URL);
 });
 
-$app->router->onGet("/v1/cloudfront/cert/:cert", function (string $cert) {
-    $enc = new PhoreSecretBoxSync(phore_file(CONF_MANAGER_CERT_SECRET)->get_contents());
-    echo $enc->encrypt(phore_file(__DIR__ . "/democert.pem")->get_contents());
-    return true;
+
+$app->define("certStore", function () : PhoreSecureCertStore {
+    return new PhoreSecureCertStore(phore_file(CONF_PRINCIPAL_SECRET)->get_contents());
 });
+
+
+$app->define("cloudfront", function(PhoreSecureCertStore $certStore) : Cloudfront {
+    return new Cloudfront($certStore);
+});
+
+
+$app->addCtrl(RepoPushHookCtrl::class);
+$app->addCtrl(CloudfrontCtrl::class);
+$app->addCtrl(CloudfrontCertCtrl::class);
 
 
 $app->serve();

@@ -16,4 +16,12 @@ command:
     - "echo \"www-data   ALL = (ALL) NOPASSWD: /usr/bin/docker\" | sudo tee --append /etc/sudoers"
     - sudo scripts/install.sh
     - "composer update"
-    #- "sudo chmod 777 /srv"
+
+  dev:
+    - sudo /opt/scripts/startup.sh
+
+  run:
+    - sudo /opt/scripts/startup.sh
+
+  interval:
+    - sudo php -f /opt/bin/acquire-ssl-certs.php

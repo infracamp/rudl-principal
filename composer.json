@@ -23,7 +23,9 @@
     "phore/filesystem": "dev-master",
     "phore/system": "dev-master",
     "phore/cloudtool": "dev-master",
-    "phore/http-client": "dev-master"
+    "phore/http-client": "dev-master",
+    "phore/letsencrypt": "dev-master",
+    "phore/vcs": "dev-master"
   },
   "minimum-stability": "dev"
 }

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "cdd870f9cf58f78d4195c28631f0a4f3",
+    "content-hash": "52c0df3b59846a6f88a3ff13a6b044cd",
     "packages": [
         {
             "name": "phore/cli",
@@ -107,12 +107,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/phore/phore-core.git",
-                "reference": "a46fc77691f10aa739208c5e7297052418388e76"
+                "reference": "68203121e68d8f9bbffe24e2bc5dc15e95ff5119"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phore/phore-core/zipball/a46fc77691f10aa739208c5e7297052418388e76",
-                "reference": "a46fc77691f10aa739208c5e7297052418388e76",
+                "url": "https://api.github.com/repos/phore/phore-core/zipball/68203121e68d8f9bbffe24e2bc5dc15e95ff5119",
+                "reference": "68203121e68d8f9bbffe24e2bc5dc15e95ff5119",
                 "shasum": ""
             },
             "require": {
@@ -150,7 +150,7 @@
             ],
             "description": "Phore core library",
             "homepage": "https://infracamp.org/phore/",
-            "time": "2019-06-03T09:03:08+00:00"
+            "time": "2019-06-04T13:51:09+00:00"
         },
         {
             "name": "phore/di-base",
@@ -306,6 +306,53 @@
             "time": "2019-05-24T20:41:44+00:00"
         },
         {
+            "name": "phore/letsencrypt",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/phore/phore-letsencrypt.git",
+                "reference": "fd07b1114d6769f74a4a8fccd1ea76d07a2403d5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/phore/phore-letsencrypt/zipball/fd07b1114d6769f74a4a8fccd1ea76d07a2403d5",
+                "reference": "fd07b1114d6769f74a4a8fccd1ea76d07a2403d5",
+                "shasum": ""
+            },
+            "require": {
+                "ext-openssl": "*",
+                "phore/core": "*",
+                "phore/filesystem": "dev-master",
+                "phore/http-client": "dev-master",
+                "phore/micro-app": "dev-master",
+                "phore/system": "dev-master",
+                "php": ">=7.1"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Phore\\Letsencrypt\\": "src/"
+                },
+                "files": []
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Matthias Leuffen",
+                    "email": "m@tth.es"
+                }
+            ],
+            "description": "Letsencrypt wrapper and secure cert storage",
+            "homepage": "https://infracamp.org/phore",
+            "time": "2019-06-04T13:18:32+00:00"
+        },
+        {
             "name": "phore/micro-app",
             "version": "dev-master",
             "source": {
@@ -355,6 +402,55 @@
             "time": "2019-05-29T17:16:47+00:00"
         },
         {
+            "name": "phore/objectstore",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/phore/phore-objectstore.git",
+                "reference": "047e5d2f5778d53d9063c6a13824f10d193e428f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/phore/phore-objectstore/zipball/047e5d2f5778d53d9063c6a13824f10d193e428f",
+                "reference": "047e5d2f5778d53d9063c6a13824f10d193e428f",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "ext-yaml": "*",
+                "phore/core": "dev-master",
+                "php": ">=7.1"
+            },
+            "require-dev": {
+                "google/cloud-storage": "dev-master",
+                "nette/tester": "^2.1@dev",
+                "phore/filesystem": "dev-master"
+            },
+            "suggest": {
+                "google/cloud-storage": "If using Google Cloud services",
+                "phore/filesystem": "If using filesystem driver"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Phore\\ObjectStore\\": "src/"
+                },
+                "files": []
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Matthias Leuffen",
+                    "email": "m@tth.es"
+                }
+            ],
+            "description": "Object store for local files, google, aws",
+            "time": "2019-05-08T14:41:10+00:00"
+        },
+        {
             "name": "phore/system",
             "version": "dev-master",
             "source": {
@@ -396,6 +492,51 @@
             ],
             "description": "Execute shell commands",
             "time": "2019-06-03T09:04:15+00:00"
+        },
+        {
+            "name": "phore/vcs",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/phore/phore-vcs.git",
+                "reference": "8157839fc36de1ef2190115bad7534bc9ec07981"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/phore/phore-vcs/zipball/8157839fc36de1ef2190115bad7534bc9ec07981",
+                "reference": "8157839fc36de1ef2190115bad7534bc9ec07981",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "ext-yaml": "*",
+                "phore/filesystem": "dev-master",
+                "phore/objectstore": "dev-master",
+                "phore/system": "dev-master",
+                "php": ">7.1"
+            },
+            "require-dev": {
+                "phore/theme-coreui": "dev-master"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Phore\\VCS\\": "src/"
+                },
+                "files": []
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Matthias Leuffen",
+                    "email": "leuffen@continue.de"
+                }
+            ],
+            "description": "Wrapper for git",
+            "time": "2019-06-04T10:39:47+00:00"
         },
         {
             "name": "psr/container",
@@ -560,7 +701,9 @@
         "phore/filesystem": 20,
         "phore/system": 20,
         "phore/cloudtool": 20,
-        "phore/http-client": 20
+        "phore/http-client": 20,
+        "phore/letsencrypt": 20,
+        "phore/vcs": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
