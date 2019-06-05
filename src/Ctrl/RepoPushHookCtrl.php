@@ -20,6 +20,7 @@ class RepoPushHookCtrl
     public function on_get(VcsRepository $repo)
     {
 
+        ignore_user_abort(true);
         $repo->pull();
         return ["success"=> true];
 
