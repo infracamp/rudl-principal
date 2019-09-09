@@ -56,8 +56,16 @@ $app->addCtrl(RepoPushHookCtrl::class);
 $app->addCtrl(CloudfrontCtrl::class);
 $app->addCtrl(CloudfrontCertCtrl::class);
 
-$app->router->onGet("/", function () {
-    return ["success" => true, "msg" => "rudl-principal ready", "host" => gethostname()];
+$app->router->onGet("/", function (VcsRepository $repo) {
+    return [
+        "success" => true,
+        "msg" => "rudl-principal ready",
+        "host" => gethostname(),
+        "ssh-public-key" => trim(phore_file("/mnt/.ssh/id_ed25519.pub")->get_contents()),
+        "repo-url" => CONF_REPO_URL,
+        "cluster-name" => CONF_CLUSTER_NAME,
+        "repo-valid" => $repo->exists()
+    ];
 });
 
 

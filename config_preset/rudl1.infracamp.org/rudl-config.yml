@@ -15,5 +15,3 @@ registry_auth:
 
 
 auto_secrets:
-  - "_rudl_cf_key"
-  -

@@ -78,7 +78,7 @@ function on_error () {
     local prog=$BASH_COMMAND
 
     echo -e "\e[1;101;30m\n" 1>&2
-    echo -en "KICKSTART ERROR: '$prog' (Exit code: $exit_code on ${PROGNAME} line $1)\n" 1>&2
+    echo -en "KICKSTART ERROR: '$prog' (Exit code: $exit_code on ${PROGNAME} line $1) - inspect output above for more information.\n" 1>&2
     echo -e "\e[0m" 1>&2
 
     exit 1
@@ -161,8 +161,18 @@ then
     ask_user "Do you want to create a new .kick.yml-file?"
     echo "# Kickstart container config file - see https://gitub.com/infracamp/kickstart" > $PROGPATH/.kick.yml
     echo "# Run ./kickstart.sh to start a development-container for this project" >> $PROGPATH/.kick.yml
+
     echo "version: 1" >> $PROGPATH/.kick.yml
     echo 'from: "infracamp/kickstart-flavor-base"' >> $PROGPATH/.kick.yml
+    echo "command:"     >> $PROGPATH/.kick.yml
+    echo "  build:"     >> $PROGPATH/.kick.yml
+    echo "    - \"echo 'I am executed on build time'\""    >> $PROGPATH/.kick.yml
+    echo "  init:"      >> $PROGPATH/.kick.yml
+    echo "  test:"      >> $PROGPATH/.kick.yml
+    echo "  run:"       >> $PROGPATH/.kick.yml
+    echo "  dev:"       >> $PROGPATH/.kick.yml
+    echo "    - \"echo 'I am executed in dev mode'\""    >> $PROGPATH/.kick.yml
+
     echo "File created. See $_KICKSTART_DOC_URL for more information";
     echo ""
     echo "You can now run ./kickstart.sh to start the container"
@@ -346,7 +356,7 @@ run_shell() {
         ;;
       k|K)
         echo "Killing running kickstart containers..."
-        docker kill `docker ps | grep "/kickstart/" | cut -d" " -f1`
+        docker kill `docker ps | grep "/kickstart/" | cut -d " " -f1`
         return 0;
         ;;
 
