@@ -10,6 +10,9 @@ namespace Rudl\Ctrl;
 
 
 use Phore\VCS\VcsRepository;
+use Rudl\Config;
+use Rudl\DeployManager;
+use Rudl\DockerMgr;
 
 class RepoPushHookCtrl
 {
@@ -17,13 +20,15 @@ class RepoPushHookCtrl
     const ROUTE = "/v1/hooks/repo";
 
 
-    public function on_get(VcsRepository $repo)
+    public function on_get(VcsRepository $repo, DeployManager $deployManager)
     {
-
         ignore_user_abort(true);
         $repo->pull();
-        return ["success"=> true];
 
+        $deployManager->registerAuth();
+        $deployManager->deployAllStacks();
+
+        return ["success"=> true];
     }
 
 }

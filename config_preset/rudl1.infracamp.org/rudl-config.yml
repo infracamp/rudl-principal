@@ -7,11 +7,5 @@ deploy_keys:
     pass_hash: $20$02jdlskhh4lkwj
 
 registry_auth:
-  registry.gitlab.com:
-    user: someUser
-    enc_pass: encrypted password
 
 
-
-
-auto_secrets:
