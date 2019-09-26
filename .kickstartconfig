@@ -1,1 +1,21 @@
+#!/bin/bash
+
+
+CONF_SECRET_PATH=~/.kickstart/secrets/rudl-principal
+
+CONF_DEVELOPER_SECRET="testkey_dev_only"
+
+mkdir -p $CONF_SECRET_PATH
+echo $CONF_DEVELOPER_SECRET > "$CONF_SECRET_PATH/rudl_principal_secret"
+
+###
+### rudl_principal_ssh_key must have principal_secret als pass phrase!
+###
+
+echo "Remove existing keys and gerate a new one"
+rm -f $CONF_SECRET_PATH/rudl_principal_ssh_key
+rm -f $CONF_SECRET_PATH/rudl_principal_ssh_key.pub
+
+ssh-keygen -t ed25519 -N "$CONF_DEVELOPER_SECRET" -f "$CONF_SECRET_PATH/rudl_principal_ssh_key"
+
 KICKSTART_DOCKER_RUN_OPTS=" -v /var/run/docker.sock:/var/run/docker.sock "
