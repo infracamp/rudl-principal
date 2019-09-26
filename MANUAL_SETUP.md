@@ -15,6 +15,11 @@ passwd=$(pwgen 512 -s -1) && echo $passwd | ccrypt | base64 -w 72 > cluster-secr
 ```
 
 
+```
+openssl genpkey -algorithm EC -pkeyopt ec_paramgen_curve:X25519 -pkeyopt ec_param_enc:named_curve
+```
+
+
 ## Recovering a cluster
 
 ```

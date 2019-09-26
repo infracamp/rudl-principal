@@ -29,8 +29,6 @@ class Cloudfront
         $this->secureCertStore = $phoreSecureCertStore;
     }
 
-
-
     public function getCloudFrontConfig ()
     {
         $ret = [
