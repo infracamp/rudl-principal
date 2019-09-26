@@ -9,6 +9,7 @@
 namespace Rudl\Ctrl;
 
 
+use Phore\MicroApp\App;
 use Rudl\Cloudfront;
 
 class CloudfrontCtrl
@@ -17,10 +18,23 @@ class CloudfrontCtrl
     const ROUTE = "/v1/cloudfront/config";
 
 
-    public function on_get(Cloudfront $cloudfront)
+    public function on_get(App $app)
     {
-
-        return $cloudfront->getCloudFrontConfig();
+        try {
+            $cloudfront = $app->get("cloudfront");
+            return $cloudfront->getCloudFrontConfig();
+        } catch (\Exception $ex) {
+            return  $ret = [
+                "vhosts" => [
+                    [
+                        "domains" => [ CONF_CLUSTER_DOMAIN ],
+                        "locations" => [
+                            ["location" => "/", "proxy_pass" => "http://" . CONF_PRINCIPAL_SERVICE]
+                        ]
+                    ]
+                ]
+            ];
+        }
 
     }
 

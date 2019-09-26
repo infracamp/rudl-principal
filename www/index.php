@@ -31,6 +31,8 @@ require __DIR__ . "/../vendor/autoload.php";
 $app = new App();
 $app->setResponseHandler(new JsonResponseHandler());
 $app->setOnExceptionHandler(new JsonExceptionHandler());
+$app->activateExceptionErrorHandlers();
+
 $app->acl->addRule(aclRule("*")->ALLOW());
 
 $app->define("repo", function () : VcsRepository {

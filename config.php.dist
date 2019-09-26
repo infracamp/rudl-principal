@@ -24,3 +24,4 @@ define("CONF_CLUSTER_DOMAIN", CONF_CLUSTER_NAME);
 
 define("CONF_CF_SECRET", "/run/secrets/rudl_cf_secret");
 define("CONF_PRINCIPAL_SECRET", "/run/secrets/rudl_principal_secret");
+define("CONF_PRINCIPAL_SERVICE", "%CONF_PRINCIPAL_SERVICE%");
