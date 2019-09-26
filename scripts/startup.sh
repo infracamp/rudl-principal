@@ -23,7 +23,7 @@ if [[ -f $CONF_PRINCIPAL_SSH_KEY_FILE ]]
 then
     echo "Existing $CONF_PRINCIPAL_SSH_KEY_FILE -> Unlocking key"
     cp $CONF_PRINCIPAL_SSH_KEY_FILE $CONF_SSH_KEY
-
+    chmod 700 $CONF_SSH_KEY
     echo "Unlocking key using principal_secret..."
     ssh-keygen -p -P "$(cat $CONF_PRINCIPAL_SECRET_FILE)" -N "" -f $CONF_SSH_KEY
 
