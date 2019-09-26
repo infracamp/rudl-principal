@@ -10,6 +10,7 @@ namespace Rudl;
 
 
 use Phore\Core\Exception\InvalidDataException;
+use Phore\Core\Helper\PhoreSecretBoxSync;
 
 class DeployManager
 {
@@ -62,7 +63,7 @@ class DeployManager
      *
      * @throws \Exception
      */
-    public function registerAuth()
+    public function registerAuth(PhoreSecretBoxSync $secretBoxSync)
     {
         $config = $this->config->getConfigFile();
 
@@ -71,7 +72,7 @@ class DeployManager
             try {
                 $this->dockerMgr->dockerLogin(
                     phore_pluck("user", $rAuth, new InvalidDataException("User field missing in registry_auth.$registry")),
-                    phore_pluck("pass", $rAuth, new InvalidDataException("pass field missing in registry_auth.$registry")),
+                    $secretBoxSync->decrypt(phore_pluck("enc-pass", $rAuth, new InvalidDataException("pass field missing in registry_auth.$registry"))),
                     $registry
                 );
             } catch (\Exception $ex) {

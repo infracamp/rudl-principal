@@ -9,6 +9,7 @@
 namespace Rudl\Ctrl;
 
 
+use Phore\Core\Helper\PhoreSecretBoxSync;
 use Phore\VCS\VcsRepository;
 use Rudl\Config;
 use Rudl\DeployManager;
@@ -20,12 +21,12 @@ class RepoPushHookCtrl
     const ROUTE = "/v1/hooks/repo";
 
 
-    public function on_get(VcsRepository $repo, DeployManager $deployManager)
+    public function on_get(VcsRepository $repo, DeployManager $deployManager, PhoreSecretBoxSync $secretBox)
     {
         ignore_user_abort(true);
         $repo->pull();
 
-        $deployManager->registerAuth();
+        $deployManager->registerAuth($secretBox);
         $deployManager->deployAllStacks();
 
         return ["success"=> true];

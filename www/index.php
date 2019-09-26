@@ -8,6 +8,7 @@
 
 namespace App;
 
+use Rudl\Ctrl\EncryptCtrl;
 use Phore\Core\Helper\PhoreSecretBoxSync;
 use Phore\Letsencrypt\PhoreLetsencryptModule;
 use Phore\Letsencrypt\PhoreSecureCertStore;
@@ -50,6 +51,10 @@ $app->define("certStore", function () : PhoreSecureCertStore {
     return new PhoreSecureCertStore(phore_file(CONF_PRINCIPAL_SECRET)->get_contents());
 });
 
+$app->define("secretBox", function () {
+    return new PhoreSecretBoxSync(phore_file("/run/secrets/rudl_principal_secret")->get_contents());
+});
+
 $app->define("cloudfront", function(PhoreSecureCertStore $certStore) : Cloudfront {
     return new Cloudfront($certStore);
 });
@@ -72,6 +77,7 @@ $app->addModule(new PhoreLetsencryptModule());
 $app->addCtrl(RepoPushHookCtrl::class);
 $app->addCtrl(CloudfrontCtrl::class);
 $app->addCtrl(CloudfrontCertCtrl::class);
+$app->addCtrl(EncryptCtrl::class);
 
 $app->router->onGet("/", function (VcsRepository $repo, Config $config, StackStatus $stackStatus) {
     return [
