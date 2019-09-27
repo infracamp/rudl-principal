@@ -37,19 +37,35 @@ class DeployManager
     }
 
 
-    public function deployAllStacks ()
+
+    public function deployStacks (array $limitTo=null) : array
     {
+        $updated = [
+            "ok" => [],
+            "fail" => []
+        ];
         foreach ($this->config->getStacks() as $stackName => $stackFile) {
+            if ($limitTo !== null && ! in_array($stackName, $limitTo))
+                continue;
+
+
+
             try {
                 $this->dockerMgr->stackDeploy($stackName, $stackFile);
                 $this->stackStatus->set($stackName, "OK (" . date ("Y-m-d H:i:s") . ")");
+                $updated["ok"][] = $stackName;
             } catch (\Exception $e) {
                 $this->stackStatus->set($stackName, [
                     "last_update" => date("Y-m-d H:i:s"),
                     "error" => $e->getMessage()
                 ]);
+                $updated["fail"][] = [
+                    "stack" => $stackName,
+                    "error" => $e->getMessage()
+                ];
             }
         }
+        return $updated;
     }
 
 

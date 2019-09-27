@@ -7,7 +7,12 @@ deploy_keys:
     pass_hash: $20$02jdlskhh4lkwj
 
 registry_auth:
-  registry.github.com:
-    user: matthes
-    enc-pass: 20ejlakfjd
+#  registry.github.com:
+#    user: github_user_account
+#    enc-pass: no_real_passwd
+
+stack_map:
+  some_token_name:
+    - stack1
+    - stack2
 
