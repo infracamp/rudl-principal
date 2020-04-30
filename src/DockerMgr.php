@@ -18,7 +18,7 @@ class DockerMgr
 
     public function dockerLogin(string $user, string $pass, string $registryHost)
     {
-        phore_proc("sudo docker login -u :user --password-stdin :registry", [
+        phore_proc("sudo /usr/bin/docker login -u :user --password-stdin :registry", [
             "registry" => $registryHost,
             "user" => $user
         ])->exec()->write($pass)->close()->wait();
@@ -27,7 +27,7 @@ class DockerMgr
 
     public function stackDeploy ($stackName, PhoreFile $stackFile)
     {
-        phore_exec("sudo docker stack deploy --prune --with-registry-auth :stackName -c :file", [
+        phore_exec("sudo /usr/bin/docker stack deploy --prune --with-registry-auth :stackName -c :file", [
             "stackName" => $stackName,
             "file" => $stackFile->getUri()
         ]);
